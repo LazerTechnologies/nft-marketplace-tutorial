@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    font-family: "DM Sans", sans-serif;
+    background: white;
+}
+
+:root {
+    --lazer-gradient: linear-gradient(137deg, rgb(222, 43, 181) 0.84%, rgb(215, 32, 251) 34.69%, rgb(236, 64, 66) 79.3%, rgb(219, 39, 205) 126.31%);
+}
+
+.lazersea-logo {
+    font-size: 25px;
+    font-weight: 700;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-image: var(--lazer-gradient);
+}
+
+.nft-grid {
+    display: grid;
+    --template-column-gutters: 8px;
+    --template-columns: 1;
+    --template-column-compact-multiplier: 1;
+    --template-reduced-columns: 0;
+    --template-reduced-columns-multiplier: 1;
+    gap: var(--template-column-gutters);
+    grid-auto-rows: minmax(0px, 1fr);
+    grid-template-columns: repeat( calc(var(--template-columns) - (var(--template-reduced-columns) * var(--template-reduced-columns-multiplier))), minmax(0, 1fr) );
+}
+
+@media (min-width: 20rem) {
+    .nft-grid {
+        --template-columns: 2;
+    }
+}
+
+@media (min-width: 30rem) {
+    .nft-grid {
+        --template-columns: 3;
+    }
+}
+
+@media (min-width: 40rem) {
+    .nft-grid {
+        --template-columns: 4;
+    }
+}
+
+@media (min-width: 768px) {
+    .nft-grid {
+        --template-column-gutters: 16px;
+    }
+}
+
+.profile-placeholder {
+    background-image: var(--lazer-gradient);
+}
