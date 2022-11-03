@@ -1,22 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 
-const getIpfsUrlFromMoralisImgUrl = async (
-  name: string,
-  moralisImgUrl: string
-): Promise<{ tokenUri: string; name: string } | undefined> => {
-  try {
-    const { data } = await axios.get(moralisImgUrl);
-    const ipfsAddress = data.image.split("ipfs://")[1];
-    return {
-      tokenUri: `https://gateway.ipfscdn.io/ipfs/${ipfsAddress}`,
-      name,
-    };
-  } catch (e) {
-    return;
-  }
-};
-
 export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
@@ -36,24 +20,18 @@ export default async function handle(
   try {
     const { data } = await axios.request(options);
 
-    const imgUrlPromises: Promise<
-      { tokenUri: string; name: string } | undefined
-    >[] = [];
+    const results: { tokenUri: any; name: any }[] = data.result.map(
+      (nft: any) => ({
+        name: JSON.parse(nft.metadata)?.name,
+        tokenUri: JSON.parse(nft.metadata)?.image,
+      })
+    );
 
-    data.result.map((nft: any) => {
-      imgUrlPromises.push(
-        getIpfsUrlFromMoralisImgUrl(
-          JSON.parse(nft.metadata)?.name,
-          nft.token_uri
-        )
-      );
-    });
-
-    const imgUrlResults = (await Promise.all(imgUrlPromises)).filter(
+    const filteredResults = results.filter(
       (data) => !!data?.tokenUri && !!data?.name
     );
 
-    res.status(200).json(imgUrlResults);
+    res.status(200).json(filteredResults);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error });
