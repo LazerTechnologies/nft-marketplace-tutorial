@@ -6,3 +6,39 @@ html {
     font-family: "DM Sans", sans-serif;
     background: white;
 }
+
+.nft-grid {
+    display: grid;
+    --template-column-gutters: 8px;
+    --template-columns: 1;
+    --template-column-compact-multiplier: 1;
+    --template-reduced-columns: 0;
+    --template-reduced-columns-multiplier: 1;
+    gap: var(--template-column-gutters);
+    grid-auto-rows: minmax(0px, 1fr);
+    grid-template-columns: repeat( calc(var(--template-columns) - (var(--template-reduced-columns) * var(--template-reduced-columns-multiplier))), minmax(0, 1fr) );
+}
+
+@media (min-width: 20rem) {
+    .nft-grid {
+        --template-columns: 2;
+    }
+}
+
+@media (min-width: 30rem) {
+    .nft-grid {
+        --template-columns: 3;
+    }
+}
+
+@media (min-width: 40rem) {
+    .nft-grid {
+        --template-columns: 4;
+    }
+}
+
+@media (min-width: 768px) {
+    .nft-grid {
+        --template-column-gutters: 16px;
+    }
+}
