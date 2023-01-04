@@ -1,5 +1,7 @@
-import Image from "next/image";
+import Image from "next/image"; 
 import { MediaRenderer } from "@thirdweb-dev/react";
+import NFT from "../pages/assets/[listingId]";
+import { string } from "zod";
 
 export default function NFTCard({
   nft,

@@ -10,6 +10,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <Component {...pageProps} />
       </AuthProvider>
     </ThirdwebProvider>
+
   );
 };
 

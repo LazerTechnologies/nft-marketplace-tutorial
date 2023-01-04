@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   const address = useAddress();
 
   const { contract } = useContract(
-    "0xd655B5d412eAbD1b7A901793673a511e664bCF5f",
+    "0x7653Cd64320c65733C005EF855CdE916705B483D",
     "marketplace"
   );
 
@@ -25,10 +25,10 @@ const Home: NextPage = () => {
   return (
     <div className={"space-y-4 p-2"}>
       <div className={"flex space-x-4"}>
-        <div className={"text-2xl font-semibold"}>Active Listings</div>
+        <div className={"text-2xl font-semibold"}>Sounds</div>
         <Link href={`profile/${address}`}>
           <div className={"cursor-pointer text-2xl font-semibold"}>
-            My Collections
+            Collection
           </div>
         </Link>
       </div>
