@@ -1,4 +1,4 @@
-## NFT Marketplace Tutorial
+## Sound Phase Studio
 
 Get started by running:
 
